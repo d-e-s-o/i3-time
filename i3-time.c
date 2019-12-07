@@ -1,7 +1,7 @@
 // i3-time.c
 
 /***************************************************************************
- *   Copyright (C) 2017 Daniel Mueller (deso@posteo.net)                   *
+ *   Copyright (C) 2017-2019 Daniel Mueller (deso@posteo.net)              *
  *                                                                         *
  *   This program is free software: you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -47,7 +47,7 @@ void printTime(void)
 
   do {
     written = write(STDOUT_FILENO, datetime, size);
-  } while (written < 0 && errno == EAGAIN);
+  } while (written < 0 && errno == EINTR);
 
   if (written < 0) {
     perror("write");
